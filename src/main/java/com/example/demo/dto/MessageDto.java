@@ -8,8 +8,12 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-@AllArgsConstructor
 public class MessageDto {
     private String name;
-    private String messageText;
+    private String text;
+
+    public MessageDto (String name, String text) {
+        this.name = name;
+        this.text = text;
+    }
 }

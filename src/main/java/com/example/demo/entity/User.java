@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class User {
 
     @Id
-    int userId;
+    int id;
 
     String name;
 

@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.exception.UsernameNotFoundException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -30,16 +31,14 @@ public class TokenGenerator {
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
-
         return token;
     }
 
-    public String getLoginFromToken(String token){
+    public String getNameFromToken(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody();
-
         return claims.getSubject();
     }
 

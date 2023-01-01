@@ -14,11 +14,12 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
+
     @Id
     int id;
 
     String name;
 
-    String messageText;
+    String text;
 
 }

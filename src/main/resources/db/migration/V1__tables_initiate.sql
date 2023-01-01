@@ -1,18 +1,18 @@
 CREATE TABLE IF NOT EXISTS users (
-       userId INT AUTO_INCREMENT,
+       id INT AUTO_INCREMENT,
        name VARCHAR(60),
        password VARCHAR(100),
-       PRIMARY KEY (userId)
+       PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS messages (
        id INT AUTO_INCREMENT,
        name VARCHAR(60),
-       messageText VARCHAR(255),
+       text VARCHAR(255),
        PRIMARY KEY (id)
 );
 
-INSERT INTO messages(name, messageText)
+INSERT INTO messages(name, text)
 VALUES ('user1', '1.asdasdasda'),
        ('user2', '1.special_user2'),
        ('user3', '1.special_user3'),

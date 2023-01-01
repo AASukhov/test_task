@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.exception.UsernameNotFoundException;
 import com.example.demo.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,8 +32,8 @@ public class TokenFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         String token = getJwtFromRequest(request);
         if(StringUtils.hasText(token) && generator.validateToken(token)){
-            String login = generator.getLoginFromToken(token);
-            UserDetails details = userDetailsService.loadUserByUsername(login);
+            String name = generator.getNameFromToken(token);
+            UserDetails details = userDetailsService.loadUserByUsername(name);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     details, null, details.getAuthorities());
 
