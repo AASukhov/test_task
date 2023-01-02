@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  app:
+    image: "test_task_app"
+    build: ./
+    ports:
+      - "5500:5500"
+    depends_on:
+      database:
+          condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/test_task1
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 49918003
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  database:
+    image: mysql/mysql-server:latest
+    container_name: 'db_test_task'
+    volumes:
+      - /mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: 49918003
+      MYSQL_ROOT_PASSWORD: 49918003
+      MYSQL_DATABASE: test_task1
+    ports:
+      - "4000:4000"

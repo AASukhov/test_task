@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class AuthenticationResponseDto {
-    @JsonProperty("auth-token")
+    @JsonProperty("token")
     private String token;
 
     public AuthenticationResponseDto(String token) {

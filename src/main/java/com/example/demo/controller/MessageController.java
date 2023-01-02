@@ -19,7 +19,7 @@ public class MessageController {
 
     @PostMapping()
     public ResponseEntity<?> sendMessage(@RequestBody MessageDto messageDto,
-                                         @RequestHeader("auth-token") String token) throws Exception {
+                                         @RequestHeader("token") String token) throws Exception {
         return service.sendMessage(messageDto, token);
     }
 }

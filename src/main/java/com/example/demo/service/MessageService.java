@@ -40,23 +40,23 @@ public class MessageService {
     @Value("${spring.datasource.password}")
     String password;
 
-    public ResponseEntity<?> sendMessage(MessageDto messageDto, String authToken) throws Exception {
-        final User user = getUser(authToken);
+    public ResponseEntity<?> sendMessage(MessageDto messageDto, String token) throws Exception {
+        final User user = getUser(token);
         if (user == null) {
             throw new UnauthorizedUserException("Unauthorized user");
         }
-        String text = messageDto.getText();
+        String message = messageDto.getMessage();
         String name = messageDto.getName();
-        if (text.startsWith("history ")) {
-            String [] arr = text.split(" ");
+        if (message.startsWith("history ")) {
+            String [] arr = message.split(" ");
             int limit = Integer.parseInt(arr[1]);
             List<String> list = executeMessageQuery(name,limit);
             return new ResponseEntity<>(list, HttpStatus.OK);
         } else {
-            Message message = new Message();
-            message.setName(name);
-            message.setText(text);
-            messageRepository.save(message);
+            Message text = new Message();
+            text.setName(name);
+            text.setMessage(message);
+            messageRepository.save(text);
             return new ResponseEntity<>("That message had been saved", HttpStatus.OK);
         }
     }
@@ -66,14 +66,15 @@ public class MessageService {
         Connection connection = null;
         PreparedStatement statement = null;
         String sqlName = "'" + name +"'";
-        String query = "SELECT text FROM messages WHERE name = " + sqlName + " limit " + limit;
+        String query = "SELECT message FROM messages WHERE name = " + sqlName + " limit " + limit;
         System.out.println(query);
         try {
+            System.out.println("testing connection");
             connection = DriverManager.getConnection(datasourceUrl, username, password);
             statement = connection.prepareStatement(query);
             ResultSet set = statement.executeQuery(query);
             while (set.next()){
-                String message = set.getString("text");
+                String message = set.getString("message");
                 list.add(message);
             }
             statement.close();

@@ -8,11 +8,11 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS messages (
        id INT AUTO_INCREMENT,
        name VARCHAR(60),
-       text VARCHAR(255),
+       message VARCHAR(255),
        PRIMARY KEY (id)
 );
 
-INSERT INTO messages(name, text)
+INSERT INTO messages(name, message)
 VALUES ('user1', '1.asdasdasda'),
        ('user2', '1.special_user2'),
        ('user3', '1.special_user3'),

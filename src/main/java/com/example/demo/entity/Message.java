@@ -20,6 +20,6 @@ public class Message {
 
     String name;
 
-    String text;
+    String message;
 
 }

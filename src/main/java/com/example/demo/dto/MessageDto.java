@@ -10,10 +10,10 @@ import lombok.Setter;
 @Setter
 public class MessageDto {
     private String name;
-    private String text;
+    private String message;
 
-    public MessageDto (String name, String text) {
+    public MessageDto (String name, String message) {
         this.name = name;
-        this.text = text;
+        this.message = message;
     }
 }
